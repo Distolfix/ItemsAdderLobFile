@@ -6,7 +6,12 @@
       "WebFetch(domain:lobfile.com)",
       "WebSearch",
       "Bash(curl:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git remote add:*)",
+      "Bash(git push:*)",
+      "Bash(gh repo create:*)",
+      "Bash(git remote set-url:*)"
     ],
     "deny": [],
     "ask": []
