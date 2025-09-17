@@ -1,0 +1,17 @@
+# ItemsAdderLobFile Configuration
+# This plugin automatically updates ItemsAdder's external host URL with the latest LobFile resource pack
+
+# Plugin settings
+plugin:
+  # Enable debug logging
+  debug: false
+
+# Messages
+messages:
+  prefix: "&8[&6LobFile&8] &r"
+  no-permission: "&cYou don't have permission to use this command."
+  config-reloaded: "&aConfiguration reloaded successfully!"
+  pack-updated: "&aResource pack URL updated to: &f{url}"
+  pack-up-to-date: "&aResource pack URL is already up to date."
+  api-error: "&cError connecting to LobFile API: &f{error}"
+  itemsadder-not-found: "&cItemsAdder plugin not found!"

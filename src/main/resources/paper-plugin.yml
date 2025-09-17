@@ -1,0 +1,13 @@
+name: ItemsAdderLobFile
+version: '1.0-SNAPSHOT'
+main: net.fantasydreams.itemsAdderLobFile.ItemsAdderLobFile
+api-version: '1.21'
+load: STARTUP
+authors: [ Disto ]
+description: Automatically updates ItemsAdder external host URL with latest LobFile resource pack
+softdepend: [ ItemsAdder ]
+
+permissions:
+  lobfile.admin:
+    description: Admin access to LobFile commands
+    default: op
