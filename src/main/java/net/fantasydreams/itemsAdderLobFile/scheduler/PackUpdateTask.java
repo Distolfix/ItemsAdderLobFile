@@ -15,12 +15,21 @@ public class PackUpdateTask extends BukkitRunnable {
         this.plugin = plugin;
         this.lobFileAPI = lobFileAPI;
         this.configUpdater = configUpdater;
+
+        if (configUpdater == null) {
+            plugin.getLogger().severe("PackUpdateTask initialized with null configUpdater!");
+        }
     }
 
     @Override
     public void run() {
         Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
             try {
+                if (configUpdater == null) {
+                    plugin.getLogger().severe("configUpdater is null in PackUpdateTask.run()");
+                    return;
+                }
+
                 if (!configUpdater.isItemsAdderPresent()) {
                     plugin.getLogger().warning("ItemsAdder config.yml not found. Skipping update.");
                     return;
@@ -42,8 +51,6 @@ public class PackUpdateTask extends BukkitRunnable {
                             plugin.getLogger().severe("Failed to update ItemsAdder configuration");
                         }
                     });
-                } else if (latestUrl != null) {
-                    plugin.getLogger().info("ItemsAdder URL is already up to date: " + latestUrl);
                 }
             } catch (Exception e) {
                 plugin.getLogger().severe("Error checking for pack updates: " + e.getMessage());

@@ -27,9 +27,9 @@ public final class ItemsAdderLobFile extends JavaPlugin {
     public void onEnable() {
         saveDefaultConfig();
         loadSecretConfig();
-        loadConfiguration();
 
         configUpdater = new ItemsAdderConfigUpdater();
+        loadConfiguration();
 
         if (!configUpdater.isItemsAdderPresent()) {
             getLogger().warning("ItemsAdder not found! The plugin will still work but won't be able to update configurations until ItemsAdder is installed.");
@@ -65,9 +65,9 @@ public final class ItemsAdderLobFile extends JavaPlugin {
         String apiKey = secretConfig.getString("lobfile.api-key", "yD8FqkvG2ch4pKzL");
         String baseUrl = secretConfig.getString("lobfile.base-url", "https://lobfile.com/api/v3");
 
-        getLogger().info("DEBUG: Loading config - API Key: " + apiKey + ", Base URL: " + baseUrl);
+        // Debug logging removed to reduce console spam
 
-        lobFileAPI = new LobFileAPI(apiKey, baseUrl);
+        lobFileAPI = new LobFileAPI(apiKey, baseUrl, getLogger());
 
         if (updateTask != null && !updateTask.isCancelled()) {
             updateTask.cancel();

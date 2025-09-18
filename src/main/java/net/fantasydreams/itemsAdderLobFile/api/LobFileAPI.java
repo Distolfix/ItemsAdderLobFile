@@ -9,16 +9,19 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
+import java.util.logging.Logger;
 
 public class LobFileAPI {
     private final String apiKey;
     private final String baseUrl;
     private final HttpClient httpClient;
     private final Gson gson;
+    private final Logger logger;
 
-    public LobFileAPI(String apiKey, String baseUrl) {
+    public LobFileAPI(String apiKey, String baseUrl, Logger logger) {
         this.apiKey = apiKey;
         this.baseUrl = baseUrl;
+        this.logger = logger;
         this.httpClient = HttpClient.newBuilder()
                 .connectTimeout(Duration.ofSeconds(10))
                 .build();
@@ -27,7 +30,7 @@ public class LobFileAPI {
 
     public String getLatestPackDownloadUrl() throws IOException, InterruptedException {
         String fullUrl = baseUrl + "/rest/get-file-list";
-        System.out.println("DEBUG: Calling API URL: " + fullUrl);
+        // Debug logging removed to reduce console spam
 
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(fullUrl))
@@ -85,7 +88,7 @@ public class LobFileAPI {
             getLatestPackDownloadUrl();
             return true;
         } catch (Exception e) {
-            System.out.println("API Test Error: " + e.getMessage());
+            logger.warning("API Test Error: " + e.getMessage());
             return false;
         }
     }
